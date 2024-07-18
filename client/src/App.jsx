@@ -5,11 +5,14 @@ import Login from "../src/pages/Login.jsx";
 import Signup from "../src/pages/Signup.jsx";
 import AddEditNotes from "./components/AddEditNotes.jsx";
 import Landing from "./pages/Landing.jsx";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
-      <Router>
+      <div>
+        <Toaster position="top-center"></Toaster>
+      </div>
         <Routes>
           <Route path="/" exact element={<Landing />} />
           <Route path="/dashboard" exact element={<Home />} />
@@ -17,7 +20,6 @@ function App() {
           <Route path="/signup" exact element={<Signup />} />
           <Route path="/addnote" exact element={<AddEditNotes />} />
         </Routes>
-      </Router>
     </>
   );
 }
