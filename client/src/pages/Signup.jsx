@@ -233,6 +233,7 @@ const Signup = () => {
         userId: userId, // Pass userId to verify OTP
         otp: otp,
       });
+      console.log(response)
       toast.success("OTP verified successfully!");
       navigate("/dashboard");
     } catch (error) {

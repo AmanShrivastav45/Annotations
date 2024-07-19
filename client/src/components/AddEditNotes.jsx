@@ -4,13 +4,10 @@ import { IoClose } from "react-icons/io5";
 import axiosInstance from "../utils/axios";
 
 const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
+  console.log(type)
   const [title, setTitle] = useState(noteData?.title || "");
   const [content, setContent] = useState(noteData?.content || "");
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    console.log(content);
-  }, [content]);
 
   const addNewNote = async () => {
     try {
@@ -35,6 +32,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
 
   const editNote = async () => {
     const noteId = noteData._id;
+    console.log(noteId)
     try {
       const response = await axiosInstance.put("/api/updatenote/" + noteId, {
         title,

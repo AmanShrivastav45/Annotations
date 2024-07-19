@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiCircle, FiMenu, FiPlusSquare } from "react-icons/fi";
 import { FaPlus } from "react-icons/fa";
 import { IoHomeOutline, IoTodayOutline } from "react-icons/io5";
@@ -10,17 +10,29 @@ import "../fonts/stylesheet.css";
 import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 
 const Navbar = ({
-  currentPage,
-  onPageChange,
   onLogout,
   toggleProfileButton,
   isProfileButtonOpen,
   onProfileClick,
   value,
   userInfo,
+  onSearchNote,
 }) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showLogoutModal, setShowConfirmationModal] = useState(false);
+  const handleOnSearch = () => {
+    if (searchQuery) {
+      onSearchNote(searchQuery);
+    }
+  };
+
+  const onClearSearch = () => {
+    setSearchQuery("");
+    onSearchNote("");
+  };
+
   return (
-    <div className="Geist w-full flex justify-start items-center flex-col">
+    <div style={{ zIndex: 1000 }} className="Geist z-100 w-full flex justify-start items-center flex-col">
       <div className="absolute top-0 w-full border-b border-[#1A1A1A] bg-[#000000]  flex flex-col items-center justify-center">
         <div className="w-full pt-1 h-20 px-4 2xl:w-[1440px] flex justify-between items-center">
           <div className="text-white Geist font-bold text-2xl flex items-center">
@@ -33,16 +45,18 @@ const Navbar = ({
                 type="text"
                 placeholder="Search for notes"
                 className="caret-white text-white text-sm bg-[#0A0A0A] w-[80%] focus:none outline-none "
-                // value={}
-                // onChange={onChange}
+                value={searchQuery}
+                onChange={(e) => {
+                  setSearchQuery(e.target.value);
+                }}
               />
               <div className="text-white text-base flex items-center">
                 {
-                  <button>
+                  <button onClick={onClearSearch}>
                     <IoClose className="mr-2 text-gray-700  hover:text-white" />
                   </button>
                 }
-                <button>
+                <button onClick={handleOnSearch}>
                   <IoMdSearch className="text-gray-600 hover:text-white" />
                 </button>
               </div>
@@ -69,7 +83,7 @@ const Navbar = ({
                   >
                     <span>User: </span>
                     <span className="Geist text-gray-300">
-                    {userInfo.userName}
+                      {userInfo.userName}
                     </span>
                   </div>
                   <button
@@ -88,16 +102,18 @@ const Navbar = ({
           <div className="h-full w-full flex items-center justify-between">
             <input
               type="text"
-              placeholder="Search for notes..."
+              placeholder="Search for notes"
               className="caret-white text-white bg-[#0A0A0A] w-[80%] text-sm focus:none outline-none h-full"
-              // value={}
-              // onChange={onChange}
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+              }}
             />
             <div className="text-white text-base flex items-center">
-              <button>
+              <button onClick={onClearSearch}>
                 <IoClose className="mr-2 text-gray-700  hover:text-white" />
               </button>
-              <button>
+              <button onClick={handleOnSearch}>
                 <IoMdSearch className="text-gray-600 hover:text-white" />
               </button>
             </div>

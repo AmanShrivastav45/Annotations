@@ -322,14 +322,13 @@ router.put("/api/updatepin/:noteId", authenticateToken, async (req, res) => {
   const noteId = req.params.noteId;
   const { isPinned } = req.body;
   const { user } = req.user;
-
   try {
     const note = await Note.findOne({ _id: noteId, userId: user._id });
-
+    console.log(note);
     if (!note)
       return res.status(404).json({ error: true, message: "Note not found" });
 
-    note.isPinned = isPinned; 
+    note.isPinned = isPinned;
 
     await note.save();
 
@@ -389,6 +388,34 @@ router.post("/api/verifyotp", async (req, res) => {
   }
 });
 
+// Search
+router.get("/api/search", authenticateToken, async (req, res) => {
+  try {
+    const { query } = req.query;
+    const userId = req.headers.userid; // Get userId from headers
+
+    if (!query) {
+      return res.status(400).json({ message: "Query parameter is required" });
+    }
+
+    if (!userId) {
+      return res.status(400).json({ message: "Query parameter is required" });
+    }
+
+    const notes = await Note.find({
+      user: userId, // Use the userId from headers
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { content: { $regex: query, $options: "i" } },
+      ],
+    });
+
+    res.json({ notes });
+  } catch (error) {
+    console.error("Error searching notes:", error);
+    res.status(500).json({ message: "An unexpected error occurred" });
+  }
+});
 // Register router with the app
 app.use(router);
 

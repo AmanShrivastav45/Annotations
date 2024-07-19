@@ -10,17 +10,17 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(
-    (config) =>{
-        const accessToken = localStorage.getItem("token");
-        if(accessToken){
-            config.headers.Authorization = `Bearer ${accessToken}`
-        }
-        return config;
-    },
-    (error) =>  {
-        return Promise.reject(error);
+  (config) => {
+    const accessToken = localStorage.getItem("token");
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
-)
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;
-console.log("axios connected")
+console.log("axios connected");

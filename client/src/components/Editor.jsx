@@ -6,12 +6,15 @@ const Editor = ({ placeholder, value, onChange }) => {
   const [content, setContent] = useState(value || "");
 
   useEffect(() => {
-    setContent(value);
-  }, [value]);
+    if (content !== value) {
+      setContent(value);
+    }
+  }, [value, content]);
 
-  useEffect(() => {
-    onChange(content);
-  }, [content, onChange]);
+  const handleChange = (value) => {
+    setContent(value);
+    onChange(value);
+  };
 
   const toolbarOptions = [
     ["bold", "italic", "underline", "strike"],
@@ -34,7 +37,7 @@ const Editor = ({ placeholder, value, onChange }) => {
       theme="snow"
       modules={modules}
       value={content}
-      onChange={(value) => setContent(value)}
+      onChange={handleChange}
       placeholder={placeholder}
       className="custom-quill Geist"
     />

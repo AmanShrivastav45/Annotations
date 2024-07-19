@@ -6,6 +6,7 @@ import Signup from "../src/pages/Signup.jsx";
 import AddEditNotes from "./components/AddEditNotes.jsx";
 import Landing from "./pages/Landing.jsx";
 import { Toaster } from "react-hot-toast";
+import ViewNotes from "./components/ViewNotes.jsx";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/dashboard" exact element={<Home />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/signup" exact element={<Signup />} />
-          <Route path="/addnote" exact element={<AddEditNotes />} />
+          <Route path="/viewnote" exact element={<ViewNotes />} />
         </Routes>
     </>
   );
