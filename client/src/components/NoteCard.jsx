@@ -50,7 +50,7 @@ const NoteCard = ({
             <div className="h-5 w-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[50%]"></div>
             <button onClick={handleViewNote}>
               <h1 className="Geist text-base text-white ml-3">
-                {title?.slice(0, 22)}<span>...</span>
+                {title?.slice(0, 30)}{ title.length > 26 ? <span>...</span> : <span></span>}
               </h1>
             </button>
           </div>
