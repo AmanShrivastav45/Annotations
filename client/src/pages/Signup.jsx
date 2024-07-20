@@ -119,7 +119,6 @@ const Signup = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setLoading(true);
     var nameHasError = false;
     var passwordHasError = false;
 
@@ -207,6 +206,7 @@ const Signup = () => {
     }
 
     // If no error, proceed with signup
+    setLoading(true);
     try {
       const response = await axiosInstance.post("/api/signup", {
         userName: name,
@@ -268,8 +268,7 @@ const Signup = () => {
           >
             Login
           </Link>
-          {loading && <Loader />}
-          {!loading && !showOtpInput ? (
+          {!showOtpInput ? (
             <form
               onSubmit={handleSignup}
               className="py-2 w-full h-full flex items-center justify-center flex-col"
@@ -415,6 +414,7 @@ const Signup = () => {
           )}
         </div>
       </div>
+      {loading && <Loader/>}
     </div>
   );
 };
