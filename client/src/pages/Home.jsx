@@ -131,7 +131,7 @@ const Home = () => {
         }}
         onSearchNote={onSearchNote}
       />
-      <div className="mt-32 sm:mt-20 p-4 sm:p-4 h-full w-full pt-1 px-4 2xl:w-[1440px] flex justify-between items-center">
+      <div className="mt-32 md:mt-20 p-4 sm:p-4 h-full w-full pt-1 px-4 2xl:w-[1440px] flex justify-between items-center">
         {allNotes.length > 0 ? (
           <div className="mx-auto w-full">
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mt-6">
@@ -154,9 +154,9 @@ const Home = () => {
           <>{search ? <NotFound /> : <EmptyCard />}</>
         )}
       </div>
-      <button onClick={() => setOpenAddEditModal({ type: "add" })}>
+      <button style={{ zIndex: 1000 }} onClick={() => setOpenAddEditModal({ type: "add" })}>
         <FaCirclePlus
-          className={`text-yellow-600  hover:text-yellow-500 text-5xl absolute bottom-10 md:bottom-16 right-10 md:right-16 transition-all`}
+          className={`text-yellow-500  hover:text-yellow-500 text-5xl absolute bottom-10 md:bottom-16 right-10 md:right-16 transition-all`}
         />
       </button>
       {openAddEditModal && (

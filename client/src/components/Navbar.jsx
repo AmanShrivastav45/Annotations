@@ -50,11 +50,11 @@ const Navbar = ({
     <div style={{ zIndex: 1000 }} className="Geist z-100 w-full flex justify-start items-center flex-col">
       <div className="absolute top-0 w-full border-b border-[#1A1A1A] bg-[#000000]  flex flex-col items-center justify-center">
         <div className="w-full pt-1 h-20 px-4 2xl:w-[1440px] flex justify-between items-center">
-          <div className="text-white Geist font-bold text-2xl flex items-center">
+          <div className="text-white Geist font-bold text-xl sm:text-2xl flex items-center md:w-[35%]">
             <MdOutlineKeyboardCommandKey className="mr-2" />
-            <h1>Annotations.</h1>
+            <h1 className="Apercu-Bold ">ANNOTATIONS</h1>
           </div>
-          <div className="hidden sm:block w-0 h-8 sm:w-72 p-2 rounded-[5px] bg-[#0A0A0A] border border-[#1e1e1e]">
+          <div className="hidden md:block w-0 h-8 md:w-[30%] p-2 rounded-[5px]  bg-[#0A0A0A] border border-[#1e1e1e]">
             <div className="h-full w-[full] flex items-center justify-between">
               <input
                 type="text"
@@ -77,7 +77,7 @@ const Navbar = ({
               </div>
             </div>
           </div>
-          <div className="flex items-start justify-center relative">
+          <div className="flex items-start w-[35%] justify-end relative">
             <button onClick={toggleProfileButton}>
               <div className="h-7 w-7 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[50%]"></div>
             </button>
@@ -113,7 +113,7 @@ const Navbar = ({
             )}
           </div>
         </div>
-        <div className="w-[95%] p-2 rounded-[5px] bg-[#0A0A0A] border border-[#1e1e1e] sm:w-0 h-10 mb-4 sm:h-0  sm:hidden">
+        <div className="w-[95%] p-2 rounded-[5px] bg-[#0A0A0A] border border-[#1e1e1e] md:w-0 h-10 mb-4 md:h-0  md:hidden">
           <div className="h-full w-full flex items-center justify-between">
             <input
               type="text"

@@ -5,6 +5,7 @@ import Astronaut from "../style/Astronaut.jsx";
 import toast from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
 import { BiHide, BiShow } from "react-icons/bi";
+import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axios.js";
 
@@ -17,17 +18,16 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post("/api/login",
-        {
-          email: email,
-          password: password,
-        })
-        
-        if(response.data && response.data.accessToken){
-          localStorage.setItem("token", response.data.accessToken)
-          navigate('/dashboard')
-        }     
-        toast.success("Logged in successfully");
+      const response = await axiosInstance.post("/api/login", {
+        email: email,
+        password: password,
+      });
+
+      if (response.data && response.data.accessToken) {
+        localStorage.setItem("token", response.data.accessToken);
+        navigate("/dashboard");
+      }
+      toast.success("Logged in successfully");
     } catch (error) {
       toast.error("Invalid credentials");
     }
@@ -80,7 +80,8 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  onKeyUp={handleInputEnter}                />
+                  onKeyUp={handleInputEnter}
+                />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
@@ -108,9 +109,7 @@ const Login = () => {
               </Link>
             </h3>
           </form>
-          <h1
-            className="fixed w-full lg:w-[50%] Geist text-center bottom-16 text-[#68686f]"
-          >
+          <h1 className="fixed w-full lg:w-[50%] Geist text-center bottom-16 text-[#68686f]">
             Demo email: user@123<br></br>Demo password: 1234
           </h1>
         </div>
@@ -120,7 +119,7 @@ const Login = () => {
             <Astronaut />
           </div>
           <div className="absolute top-10 left-10">
-            <img src={logoWhite} height={30} width={30} />
+            <MdOutlineKeyboardCommandKey className="mr-2 text-white text-4xl" />
           </div>
           <div className="Geist text-gray-300 absolute bottom-16 ">
             <h1 className="hidden text-left lg:block mx-16 lg:text-base xl:text-xl">

@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
 import { BiHide, BiShow } from "react-icons/bi";
 import { IoCheckmarkCircleSharp, IoCloseCircle } from "react-icons/io5";
+import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 import "../fonts/stylesheet.css";
 import logoWhite from "../assets/logoWhite.png";
 import Astronaut from "../style/Astronaut.jsx";
@@ -233,7 +234,7 @@ const Signup = () => {
         userId: userId, // Pass userId to verify OTP
         otp: otp,
       });
-      console.log(response)
+      console.log(response);
       toast.success("OTP verified successfully!");
       navigate("/login");
     } catch (error) {
@@ -250,7 +251,7 @@ const Signup = () => {
             <Astronaut />
           </div>
           <div className="absolute top-10 left-10">
-            <img src={logoWhite} height={30} width={30} />
+            <MdOutlineKeyboardCommandKey className="mr-2 text-white text-4xl" />
           </div>
           <div className="Geist text-gray-300 absolute bottom-16 ">
             <h1 className="hidden text-left lg:block mx-16 lg:text-base xl:text-xl">
@@ -268,7 +269,7 @@ const Signup = () => {
             Login
           </Link>
           {loading && <Loader />}
-          { !loading && !showOtpInput ? (
+          {!loading && !showOtpInput ? (
             <form
               onSubmit={handleSignup}
               className="py-2 w-full h-full flex items-center justify-center flex-col"
