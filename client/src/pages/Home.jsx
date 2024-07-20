@@ -9,6 +9,7 @@ import EmptyCard from "../components/EmptyCard";
 import ViewNote from "../components/ViewNotes";
 import NotFound from "../components/NotFound";
 import Loader from "../components/Loader";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const [openAddEditModal, setOpenAddEditModal] = useState(null);
@@ -85,7 +86,7 @@ const Home = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
     getAllNotes();
     getUserInfo();
   }, []);
@@ -93,8 +94,10 @@ const Home = () => {
   const onDeleteNote = async (noteId) => {
     try {
       await axiosInstance.delete(`/api/deletenote/${noteId}`);
+      toast.success("Note deleted successfully");
       getAllNotes();
     } catch (error) {
+      toast.error("An unexpected error occurred.");
       console.log("An unexpected error occurred. Please try again later!");
     }
   };
@@ -103,9 +106,15 @@ const Home = () => {
     const abc = !isPinned;
     try {
       await axiosInstance.put("/api/updatepin/" + noteId, { isPinned: abc });
+      if (abc === true) {
+        toast.success("Note Pinned");
+      } else {
+        toast.success("Note Unpinned");
+      }
       getAllNotes();
     } catch (error) {
-      console.log("Pin:An unexpected error occurred. Please try again later!");
+      toast.success("An unexpected error occurred.");
+      console.log("An unexpected error occurred. Please try again later!");
     }
   };
 
@@ -117,6 +126,7 @@ const Home = () => {
         isProfileButtonOpen={isProfileButtonOpen}
         onLogout={() => {
           localStorage.clear();
+          toast.success("Logged out successfully")
           navigate("/login");
         }}
         onSearchNote={onSearchNote}

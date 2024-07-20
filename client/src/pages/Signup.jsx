@@ -235,7 +235,7 @@ const Signup = () => {
       });
       console.log(response)
       toast.success("OTP verified successfully!");
-      navigate("/dashboard");
+      navigate("/login");
     } catch (error) {
       console.error(error);
       toast.error("Invalid OTP");

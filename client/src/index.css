@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html {
   --scrollbarBG: #09090b;
   --thumbBG: #1e1e1e;

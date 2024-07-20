@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Editor from "./Editor";
 import { IoClose } from "react-icons/io5";
 import axiosInstance from "../utils/axios";
+import toast from "react-hot-toast";
 
 const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
   console.log(type)
@@ -19,12 +20,14 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
         getAllNotes();
         onClose();
       }
+      toast.success("Note added successfully")
     } catch (error) {
       if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       }
     }
@@ -42,12 +45,14 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
         getAllNotes();
         onClose();
       }
+      toast.success("Note updated successfully")
     } catch (error) {
       if (
         error.response &&
         error.response.data &&
         error.response.data.message
       ) {
+        toast.error(error.response.data.message)
         setError(error.response.data.message);
       }
     }
@@ -62,8 +67,8 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
   };
 
   return (
-    <div className="absolute top-0 left-0 h-full w-full bg-black bg-opacity-75 flex items-center justify-center">
-      <div className="relative w-[95%] 2xl:w-[1440px] p-4 md:px-6 border border-[#2a2a2a] bg-black rounded-[10px] flex flex-col items-center">
+    <div  style={{ zIndex: 1000 }} className="absolute top-0 left-0 h-full w-full bg-black bg-opacity-75 flex items-center justify-center">
+      <div className="relative w-[95%] 2xl:w-[1440px] p-4 md:px-6 border border-[#2a2a2a] bg-opacity-75 bg-black rounded-[10px] flex flex-col items-center">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 text-white text-2xl"

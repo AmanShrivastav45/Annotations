@@ -8,6 +8,7 @@ import { IoMdSearch } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import "../fonts/stylesheet.css";
 import { MdOutlineKeyboardCommandKey } from "react-icons/md";
+import Logout from "../modals/logout";
 
 const Navbar = ({
   onLogout,
@@ -19,7 +20,8 @@ const Navbar = ({
   onSearchNote,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [showLogoutModal, setShowConfirmationModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  
   const handleOnSearch = () => {
     if (searchQuery) {
       onSearchNote(searchQuery);
@@ -29,6 +31,19 @@ const Navbar = ({
   const onClearSearch = () => {
     setSearchQuery("");
     onSearchNote("");
+  };
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
+
+  const handleLogoutConfirm = () => {
+    setShowLogoutModal(false);
+    onLogout();
   };
 
   return (
@@ -87,7 +102,7 @@ const Navbar = ({
                     </span>
                   </div>
                   <button
-                    onClick={onLogout}
+                    onClick={handleLogoutClick}
                     className="block px-4 py-3 text-sm  hover:bg-[#1e1e1e] hover:text-gray-400 w-full text-left"
                     role="menuitem"
                   >
@@ -120,6 +135,12 @@ const Navbar = ({
           </div>
         </div>
       </div>
+      {showLogoutModal && (
+        <Logout
+          onLogout={handleLogoutConfirm}
+          onCancel={handleLogoutCancel}
+        />
+      )}
     </div>
   );
 };

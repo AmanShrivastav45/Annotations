@@ -27,10 +27,9 @@ const Login = () => {
           localStorage.setItem("token", response.data.accessToken)
           navigate('/dashboard')
         }     
-        alert("Login successful");
+        toast.success("Logged in successfully");
     } catch (error) {
-      console.error(error);
-      alert("Error logging in");
+      toast.error("Invalid credentials");
     }
   };
 
@@ -81,7 +80,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                />
+                  onKeyUp={handleInputEnter}                />
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
@@ -109,9 +108,14 @@ const Login = () => {
               </Link>
             </h3>
           </form>
+          <h1
+            className="fixed w-full lg:w-[50%] Geist text-center bottom-16 text-[#68686f]"
+          >
+            Demo email: user@123<br></br>Demo password: 1234
+          </h1>
         </div>
         {/* Div-2 */}
-        <div className="h-full lg:w-[50%]  bg-[#18181B] flex items-center justify-center">
+        <div className="h-full lg:w-[50%]  bg-[#1e1e1e] flex items-center justify-center">
           <div className="relative lg:h-[340px] lg:w-[540px] mb-24 flex items-center justify-center">
             <Astronaut />
           </div>
