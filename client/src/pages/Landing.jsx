@@ -16,27 +16,46 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center bg-[#0a0a0a]">
-      <div className="flex items-center justify-center h-full w-full">
+    <div className="h-screen w-full flex flex-col items-center justify-start bg-[#0a0a0a]">
+      <div
+        style={{ zIndex: 10 }}
+        className="flex items-start justify-center h-[25%] sm:h-[30%]  w-full"
+      ></div>
+      <div
+        style={{ zIndex: 10 }}
+        className="h-[40%] w-full flex flex-col items-center justify-center  gap-4"
+      >
         <h1
           style={{ zIndex: 11 }}
-          className="fixed Apercu-Bold text-white text-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl"
+          className=" Apercu-Bold text-white text-center text-5xl sm:text-7xl md:text-8xl lg:text-9xl"
         >
           ANNOTATIONS
-        <p className="text-base Geist text-center text-[#68686f]">Effortlessly capture and organize your thoughts, ideas, and tasks with our intuitive notes app.</p>
+          <p className="md:text-base lg:text-xl px-8 sm:px-2  mt-3 text-sm Geist text-center text-[#68686f]">
+            Effortlessly capture and organize your thoughts, ideas, and tasks
+            with our intuitive notes app.
+          </p>
         </h1>
+        <div className="flex gap-8">
+          <Link
+            to="/signup"
+            className="h-12 w-[125px] bg-[#2a2a2a] text-gray-100 flex items-center justify-center Geist px-2 text-xl rounded-[7px]"
+          >
+            Signup
+          </Link>
+          <Link
+            to="/login"
+            className="h-12 w-[125px] flex items-center justify-center Geist px-2 text-xl bg-yellow-400 rounded-[7px]"
+          >
+            Try
+          </Link>
+        </div>
       </div>
-      <div style={{ zIndex: 10 }} className="fixed bottom-20 flex mb-32 gap-4">
-        <Link to="/signup" className="h-12 w-[125px] bg-[#2a2a2a] text-gray-100 flex items-center justify-center Geist px-2 text-xl rounded-[7px]">
-          Signup
-        </Link>
-        <Link to="/login" className="h-12 w-[125px] flex items-center justify-center Geist px-2 text-xl bg-yellow-400 rounded-[7px]">
-          Try
-        </Link>
-      </div>
+      <div></div>
       <Example />
-      <h1 className="fixed bottom-5 Geist text-[#3a3a3a]">made by <span className="text-[#68686f]">Aman Shrivastav</span></h1>
-      <FloatingSquares/>
+      <h1 className="fixed bottom-5 Geist text-[#3a3a3a]">
+        made by <span className="text-[#68686f]">Aman Shrivastav</span>
+      </h1>
+      <FloatingSquares />
     </div>
   );
 };
