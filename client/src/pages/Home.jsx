@@ -156,7 +156,7 @@ const Home = () => {
       </div>
       <button style={{ zIndex: 1000 }} onClick={() => setOpenAddEditModal({ type: "add" })}>
         <FaCirclePlus
-          className={`text-yellow-500  hover:text-yellow-500 text-5xl absolute bottom-10 md:bottom-16 right-10 md:right-16 transition-all`}
+          className={`text-yellow-500  hover:text-yellow-500 text-5xl fixed bottom-10 md:bottom-16 right-10 md:right-16 transition-all`}
         />
       </button>
       {openAddEditModal && (
