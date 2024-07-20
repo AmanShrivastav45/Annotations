@@ -79,7 +79,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
           <h1>{type === "add" ? "Create a new note!" : "Edit note"}</h1>
         </div>
         <input
-          maxLength={26}
+          maxLength={100}
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
