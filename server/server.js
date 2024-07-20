@@ -392,7 +392,9 @@ router.post("/api/verifyotp", async (req, res) => {
 router.get("/api/search", authenticateToken, async (req, res) => {
   try {
     const { query } = req.query;
+    console.log(query)
     const userId = req.headers.userid; // Get userId from headers
+    console.log(userId)
 
     if (!query) {
       return res.status(400).json({ message: "Query parameter is required" });
@@ -409,7 +411,7 @@ router.get("/api/search", authenticateToken, async (req, res) => {
         { content: { $regex: query, $options: "i" } },
       ],
     });
-
+    console.log(notes)
     res.json({ notes });
   } catch (error) {
     console.error("Error searching notes:", error);

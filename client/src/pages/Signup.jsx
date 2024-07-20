@@ -245,7 +245,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen h-screen w-full flex items-center justify-center">
       <div className="h-full w-full rounded-[7px] flex flex-row">
-        <div className="h-full lg:w-[50%] bg-[#18181B] flex items-center justify-center">
+        <div className="h-full lg:w-[50%] bg-[#0a0a0a] flex items-center justify-center">
           <div className="relative lg:h-[340px] lg:w-[540px] mb-24 flex items-center justify-center">
             <Astronaut />
           </div>
