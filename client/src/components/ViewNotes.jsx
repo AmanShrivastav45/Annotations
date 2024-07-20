@@ -3,8 +3,8 @@ import { IoClose } from "react-icons/io5";
 
 const ViewNote = ({ title,noteContent, onClose }) => {
   return (
-    <div className="absolute top-0 left-0  h-full w-full bg-black bg-opacity-75 flex items-center justify-center">
-      <div className="relative w-[95%] 2xl:w-[1440px] h-[98%] sm:h-[90%] md:h-[75%] p-4 md:px-6 border border-[#2a2a2a] bg-[#09090b] bg-opacity-75 rounded-[10px] flex flex-col items-center">
+    <div className="absolute top-0 left-0  h-full w-full bg-black bg-opacity-25 flex items-center justify-center">
+      <div className="relative w-[95%] 2xl:w-[1440px] h-[98%] sm:h-[90%] md:h-[75%] p-4 md:px-6 border border-[#2a2a2a] bg-[#09090b] rounded-[10px] flex flex-col items-center">
         <button className="absolute top-5 right-5 text-white text-2xl" onClick={onClose}>
           <IoClose />
         </button>
