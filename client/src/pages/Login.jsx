@@ -28,9 +28,7 @@ const Login = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 3000);
+        navigate("/dashboard");
       }
       toast.success("Logged in successfully");
     } catch (error) {
