@@ -68,32 +68,31 @@ const OtpInput = ({ length = 6, onOtpSubmit, sendemail, userId }) => {
       setOtp(new Array(length).fill(""));
       setResendDisabled(true);
       await axiosInstance.post(`/resendotp`, { email: sendemail });
-      alert("OTP has been resent to your email");
+      toast.success("OTP has been resent to your email");
     } catch (error) {
       console.error("Error resending OTP:", error);
-      alert("Error resending OTP");
+      toast.error("Error resending OTP");
       setResendDisabled(false);
     }
   };
 
   const verifyOTP = async (userId, otp) => {
-    console.log("yaha hu");
     try {
       const response = await axiosInstance.post("/api/verifyotp", { userId, otp });
       // Check for success property or status code
       if (response.data.status === "VERIFIED") {
         console.log("OTP verified successfully:", response.data);
-        alert(response.data.message);
+        toast.success(response.data.message);
         if (onOtpSubmit) {
           onOtpSubmit(otp);
         }
       } else {
         console.error("OTP verification failed:", response.data);
-        alert(response.data.message || "Error verifying OTP");
+        toast.error(response.data.message || "Error verifying OTP");
       }
     } catch (error) {
       console.error("Error verifying OTP:", error.message);
-      alert("Error verifying OTP");
+      toast.error("Error verifying OTP");
     }
   };
 

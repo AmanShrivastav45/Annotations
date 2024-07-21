@@ -3,14 +3,18 @@ import Editor from "./Editor";
 import { IoClose } from "react-icons/io5";
 import axiosInstance from "../utils/axios";
 import toast from "react-hot-toast";
+import Loader from "../components/Loader";
+
 
 const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
   console.log(type)
   const [title, setTitle] = useState(noteData?.title || "");
   const [content, setContent] = useState(noteData?.content || "");
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const addNewNote = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.post("/api/addnote", {
         title,
@@ -30,12 +34,15 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
         toast.error(error.response.data.message)
         setError(error.response.data.message);
       }
+    } finally {
+      setLoading(false);
     }
   };
 
   const editNote = async () => {
     const noteId = noteData._id;
     console.log(noteId)
+    setLoading(true);
     try {
       const response = await axiosInstance.put("/api/updatenote/" + noteId, {
         title,
@@ -55,6 +62,8 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
         toast.error(error.response.data.message)
         setError(error.response.data.message);
       }
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -112,6 +121,7 @@ const AddEditNotes = ({ noteData, type, onClose, getAllNotes }) => {
           </div>
         </div>
       </div>
+      {loading && <Loader/>}
     </div>
   );
 };

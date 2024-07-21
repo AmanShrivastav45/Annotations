@@ -32,6 +32,7 @@ const Home = () => {
   };
 
   const getUserInfo = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get("/api/getuser");
       if (response.data && response.data.user) {
@@ -43,10 +44,13 @@ const Home = () => {
         localStorage.clear();
         navigate("/login");
       }
+    }finally {
+      setLoading(false);
     }
   };
 
   const getAllNotes = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get("/api/getnotes");
       if (response.data && response.data.notes) {
@@ -54,6 +58,8 @@ const Home = () => {
       }
     } catch (error) {
       console.log("An unexpected error occured. Please try again later!");
+    }finally {
+      setLoading(false);
     }
   };
 
@@ -92,6 +98,7 @@ const Home = () => {
   }, []);
 
   const onDeleteNote = async (noteId) => {
+    setLoading(true);
     try {
       await axiosInstance.delete(`/api/deletenote/${noteId}`);
       toast.success("Note deleted successfully");
@@ -99,10 +106,13 @@ const Home = () => {
     } catch (error) {
       toast.error("An unexpected error occurred.");
       console.log("An unexpected error occurred. Please try again later!");
+    }finally {
+      setLoading(false);
     }
   };
 
   const updateIsPin = async (noteId, isPinned) => {
+    setLoading(true);
     const abc = !isPinned;
     try {
       await axiosInstance.put("/api/updatepin/" + noteId, { isPinned: abc });
@@ -115,6 +125,8 @@ const Home = () => {
     } catch (error) {
       toast.success("An unexpected error occurred.");
       console.log("An unexpected error occurred. Please try again later!");
+    }finally {
+      setLoading(false);
     }
   };
 

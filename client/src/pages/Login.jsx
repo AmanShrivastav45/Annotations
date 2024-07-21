@@ -8,14 +8,17 @@ import { BiHide, BiShow } from "react-icons/bi";
 import { MdOutlineKeyboardCommandKey } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axios.js";
+import Loader from "../components/Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await axiosInstance.post("/api/login", {
@@ -25,11 +28,15 @@ const Login = () => {
 
       if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
       }
       toast.success("Logged in successfully");
     } catch (error) {
-      toast.error("Invalid credentials");
+      toast.error("Server Error");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -130,6 +137,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {loading && <Loader/>}
     </div>
   );
 };
