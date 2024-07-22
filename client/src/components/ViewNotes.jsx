@@ -10,7 +10,7 @@ const ViewNote = ({ title,noteContent, onClose }) => {
         </button>
         <h1 className="text-white text-3xl Geist-semibold text-left w-full px-4 my-4">{title}</h1>
         <div id="#style-11"
-          className="outline-none bg-transparent  text-white w-full h-full p-4 text-lg overflow-y-auto Geist leading-relaxed"
+          className="outline-none bg-transparent  text-white w-full h-full p-4 text-sm sm:text-lg overflow-y-auto Geist leading-relaxed"
           dangerouslySetInnerHTML={{ __html: noteContent }}
         />
       </div>
