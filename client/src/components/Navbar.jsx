@@ -54,29 +54,7 @@ const Navbar = ({
             <MdOutlineKeyboardCommandKey className="mr-2" />
             <h1 className="Apercu-Bold ">ANNOTATIONS</h1>
           </div>
-          <div className="hidden md:block w-0 h-8 md:w-[30%] p-2 rounded-[5px]  bg-[#0A0A0A] border border-[#1e1e1e]">
-            <div className="h-full w-[full] flex items-center justify-between">
-              <input
-                type="text"
-                placeholder="Search for notes"
-                className="caret-white text-white text-sm bg-[#0A0A0A] w-[80%] focus:none outline-none "
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                }}
-              />
-              <div className="text-white text-base flex items-center">
-                {
-                  <button onClick={onClearSearch}>
-                    <IoClose className="mr-2 text-gray-700  hover:text-white" />
-                  </button>
-                }
-                <button onClick={handleOnSearch}>
-                  <IoMdSearch className="text-gray-600 hover:text-white" />
-                </button>
-              </div>
-            </div>
-          </div>
+         
           <div className="flex items-start w-[35%] justify-end relative">
             <button onClick={toggleProfileButton}>
               <div className="h-7 w-7 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-[50%]"></div>
@@ -111,27 +89,6 @@ const Navbar = ({
                 </div>
               </div>
             )}
-          </div>
-        </div>
-        <div className="w-[95%] p-2 rounded-[5px] bg-[#0A0A0A] border border-[#1e1e1e] md:w-0 h-10 mb-4 md:h-0  md:hidden">
-          <div className="h-full w-full flex items-center justify-between">
-            <input
-              type="text"
-              placeholder="Search for notes"
-              className="caret-white text-white bg-[#0A0A0A] w-[80%] text-sm focus:none outline-none h-full"
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-              }}
-            />
-            <div className="text-white text-base flex items-center">
-              <button onClick={onClearSearch}>
-                <IoClose className="mr-2 text-gray-700  hover:text-white" />
-              </button>
-              <button onClick={handleOnSearch}>
-                <IoMdSearch className="text-gray-600 hover:text-white" />
-              </button>
-            </div>
           </div>
         </div>
       </div>
